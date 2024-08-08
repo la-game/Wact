@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RequestResource" load_steps=2 format=3 uid="uid://djxw83mu5s685"]
+
+[ext_resource type="Script" path="res://src/request_resource/request_resource.gd" id="1_45qtc"]
+
+[resource]
+script = ExtResource("1_45qtc")
+url = ""
+method = 0
+headers = PackedStringArray()
+body = ""

@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://7he7deki8plt"]
+
+[ext_resource type="Texture2D" uid="uid://dh1dctpaxhuou" path="res://icons/dock-left-symbolic.svg" id="1_6o122"]
+[ext_resource type="Script" path="res://src/backup_container/backup_container.gd" id="1_a5747"]
+[ext_resource type="Texture2D" uid="uid://dduu051pgvryb" path="res://icons/plus-large-symbolic.svg" id="3_w2l3e"]
+
+[node name="SavesContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a5747")
+
+[node name="SavesTree" type="Tree" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+hide_root = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 10
+size_flags_stretch_ratio = 0.0
+
+[node name="DockButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+size_flags_stretch_ratio = 0.0
+icon = ExtResource("1_6o122")
+flat = true
+
+[node name="AddButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_w2l3e")
+flat = true
+
+[connection signal="pressed" from="HBoxContainer/DockButton" to="." method="_on_dock_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/AddButton" to="." method="_on_add_button_pressed"]

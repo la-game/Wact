@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://be0nlfibctk5d"]
+
+[ext_resource type="Script" path="res://src/request_container/endpoint_content/endpoint_content.gd" id="1_4av5b"]
+[ext_resource type="Texture2D" uid="uid://cip046nbgb2wd" path="res://icons/warning-outline-symbolic.svg" id="2_chdmg"]
+
+[node name="EndpointContent" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4av5b")
+
+[node name="Method" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MethodLabel" type="Label" parent="Method"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HTTP Request Method"
+
+[node name="MethodButton" type="OptionButton" parent="Method"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 1
+selected = 0
+item_count = 9
+popup/item_0/text = "GET"
+popup/item_1/text = "HEAD"
+popup/item_1/id = 1
+popup/item_2/text = "POST"
+popup/item_2/id = 2
+popup/item_3/text = "PUT"
+popup/item_3/id = 3
+popup/item_4/text = "DELETE"
+popup/item_4/id = 4
+popup/item_5/text = "OPTIONS"
+popup/item_5/id = 5
+popup/item_6/text = "TRACE"
+popup/item_6/id = 6
+popup/item_7/text = "CONNECT"
+popup/item_7/id = 7
+popup/item_8/text = "PATCH"
+popup/item_8/id = 8
+
+[node name="URLEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "http://www.example.com"
+
+[node name="SendButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Send Request"
+
+[node name="ResultButton" type="Button" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 2
+text = "Unknown"
+icon = ExtResource("2_chdmg")
+flat = true
+
+[connection signal="pressed" from="SendButton" to="." method="_on_send_button_pressed"]

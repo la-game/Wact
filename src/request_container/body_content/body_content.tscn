@@ -1,0 +1,152 @@
+[gd_scene load_steps=8 format=3 uid="uid://ktgw7mcu76tr"]
+
+[ext_resource type="Texture2D" uid="uid://dp4f7ok4pmh6u" path="res://icons/info-outline-symbolic.svg" id="1_34bud"]
+[ext_resource type="Script" path="res://src/request_container/body_content/body_content.gd" id="1_f51vt"]
+[ext_resource type="Texture2D" uid="uid://d3hyf3jqikwwe" path="res://icons/pencil-symbolic.svg" id="2_a80g1"]
+[ext_resource type="Texture2D" uid="uid://cm73q5oxkplmh" path="res://icons/user-trash-symbolic.svg" id="3_ypilb"]
+[ext_resource type="Texture2D" uid="uid://or0a0w1v1ijy" path="res://icons/check-plain-symbolic.svg" id="4_5r2p7"]
+[ext_resource type="Texture2D" uid="uid://c5tf0homnocn3" path="res://icons/error-outline-symbolic.svg" id="5_b06b4"]
+[ext_resource type="Texture2D" uid="uid://ddqh1e5jcgk5t" path="res://icons/timer-sand-symbolic.svg" id="6_stovq"]
+
+[node name="BodyContent" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f51vt")
+
+[node name="OnOff" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="OnOffLabel" type="Label" parent="OnOff"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Body"
+
+[node name="OnOffButton" type="CheckButton" parent="OnOff"]
+layout_mode = 2
+
+[node name="ContentType" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ContentTypeLabel" type="Label" parent="ContentType"]
+layout_mode = 2
+text = "Content-Type"
+
+[node name="ContentTypeInfo" type="Button" parent="ContentType"]
+layout_mode = 2
+tooltip_text = "Each option will overwrite the field Content-Type from Headers.
+
+- Raw
+    - text/plain
+- Form URL Encoded
+    - application/x-www-form-urlencoded
+- Form Data
+    - multipart/form-data; boundary=<boundary>
+- JSON
+    - application/json"
+icon = ExtResource("1_34bud")
+flat = true
+vertical_icon_alignment = 2
+
+[node name="ContentTypeButton" type="OptionButton" parent="ContentType"]
+layout_mode = 2
+size_flags_horizontal = 10
+alignment = 1
+selected = 0
+item_count = 4
+popup/item_0/text = "Raw"
+popup/item_0/id = 1
+popup/item_1/text = "Form URL Encoded"
+popup/item_1/id = 2
+popup/item_2/text = "Form Data"
+popup/item_2/id = 3
+popup/item_3/text = "JSON"
+popup/item_3/id = 4
+
+[node name="Body" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Raw" type="TextEdit" parent="Body"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FormUrlEncoded" type="VBoxContainer" parent="Body"]
+visible = false
+layout_mode = 2
+
+[node name="KeyValueButton" type="Button" parent="Body/FormUrlEncoded"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Add key and value..."
+
+[node name="List" type="VBoxContainer" parent="Body/FormUrlEncoded"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Body/FormUrlEncoded/List"]
+layout_mode = 2
+placeholder_text = "Preview"
+editable = false
+
+[node name="Line" type="HBoxContainer" parent="Body/FormUrlEncoded/List"]
+layout_mode = 2
+
+[node name="KeyValue" type="VBoxContainer" parent="Body/FormUrlEncoded/List/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="KeyLabel" type="Label" parent="Body/FormUrlEncoded/List/Line/KeyValue"]
+layout_mode = 2
+text = "Key"
+
+[node name="ValueLabel" type="Label" parent="Body/FormUrlEncoded/List/Line/KeyValue"]
+modulate = Color(0.60933, 0.60933, 0.60933, 1)
+layout_mode = 2
+text = "Value"
+
+[node name="EditButton" type="Button" parent="Body/FormUrlEncoded/List/Line"]
+layout_mode = 2
+icon = ExtResource("2_a80g1")
+flat = true
+
+[node name="DeleteButton" type="Button" parent="Body/FormUrlEncoded/List/Line"]
+layout_mode = 2
+icon = ExtResource("3_ypilb")
+flat = true
+
+[node name="JSON" type="VBoxContainer" parent="Body"]
+layout_mode = 2
+
+[node name="Warning" type="HBoxContainer" parent="Body/JSON"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="OkButton" type="Button" parent="Body/JSON/Warning"]
+modulate = Color(0.196078, 1, 0, 1)
+layout_mode = 2
+text = "Ok"
+icon = ExtResource("4_5r2p7")
+flat = true
+
+[node name="ErrorButton" type="Button" parent="Body/JSON/Warning"]
+visible = false
+modulate = Color(1, 0.196078, 0, 1)
+layout_mode = 2
+text = "Invalid"
+icon = ExtResource("5_b06b4")
+flat = true
+
+[node name="ProcessingButton" type="Button" parent="Body/JSON/Warning"]
+visible = false
+modulate = Color(1, 1, 0, 1)
+layout_mode = 2
+text = "Processing"
+icon = ExtResource("6_stovq")
+flat = true
+
+[node name="CodeEdit" type="CodeEdit" parent="Body/JSON"]
+layout_mode = 2
+size_flags_vertical = 3

@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvisctvwmanyn"]
+
+[ext_resource type="Script" path="res://src/request_container/request_container.gd" id="1_4kqqo"]
+[ext_resource type="PackedScene" uid="uid://dvi0k068ir2f7" path="res://src/request_container/navigation/navigation.tscn" id="1_583tw"]
+[ext_resource type="PackedScene" uid="uid://be0nlfibctk5d" path="res://src/request_container/endpoint_content/endpoint_content.tscn" id="2_xc75t"]
+[ext_resource type="PackedScene" uid="uid://407rdlteq4nv" path="res://src/request_container/headers_content/headers_content.tscn" id="3_f8j3j"]
+[ext_resource type="PackedScene" uid="uid://ktgw7mcu76tr" path="res://src/request_container/body_content/body_content.tscn" id="4_l4veu"]
+[ext_resource type="PackedScene" uid="uid://j41ryit5g0fm" path="res://src/request_container/response_content/response_content.tscn" id="6_hwb4c"]
+
+[node name="RequestContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4kqqo")
+
+[node name="Navigation" parent="." node_paths=PackedStringArray("endpoint_content", "headers_content", "body_content", "response_content") instance=ExtResource("1_583tw")]
+unique_name_in_owner = true
+layout_mode = 2
+endpoint_content = NodePath("../Content/EndpointContent")
+headers_content = NodePath("../Content/HeadersContent")
+body_content = NodePath("../Content/BodyContent")
+response_content = NodePath("../Content/ResponseContent")
+
+[node name="Content" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="EndpointContent" parent="Content" instance=ExtResource("2_xc75t")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HeadersContent" parent="Content" instance=ExtResource("3_f8j3j")]
+visible = false
+layout_mode = 2
+
+[node name="BodyContent" parent="Content" instance=ExtResource("4_l4veu")]
+visible = false
+layout_mode = 2
+
+[node name="ResponseContent" parent="Content" instance=ExtResource("6_hwb4c")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
+
+[connection signal="save_requested" from="Navigation" to="." method="_on_navigation_save_requested"]
+[connection signal="send_pressed" from="Content/EndpointContent" to="." method="_on_endpoint_content_send_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

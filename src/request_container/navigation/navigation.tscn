@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://dvi0k068ir2f7"]
+
+[ext_resource type="Script" path="res://src/request_container/navigation/navigation.gd" id="1_tgbu7"]
+[ext_resource type="Texture2D" uid="uid://ctw3qo5quvyi1" path="res://icons/vertical-arrows-long-symbolic.svg" id="1_x87lt"]
+[ext_resource type="Texture2D" uid="uid://vt6o3hoj0ykq" path="res://icons/tag-outline-symbolic.svg" id="2_rkps1"]
+[ext_resource type="Texture2D" uid="uid://dw4fwc7jfh2h4" path="res://icons/harddisk-inverted-symbolic.svg" id="2_uaf60"]
+[ext_resource type="Texture2D" uid="uid://duxuoys2b5eey" path="res://icons/person-symbolic.svg" id="3_i7xoc"]
+[ext_resource type="Texture2D" uid="uid://20gv3r1a2cyl" path="res://icons/fingerprint-symbolic.svg" id="4_1osk7"]
+[ext_resource type="Texture2D" uid="uid://ddhbcl8pgwggt" path="res://icons/padlock2-symbolic.svg" id="5_f2qh0"]
+[ext_resource type="Texture2D" uid="uid://cscg1l4c3ai26" path="res://icons/archive-symbolic.svg" id="7_x0seg"]
+
+[node name="Navigation" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+alignment = 1
+script = ExtResource("1_tgbu7")
+
+[node name="SaveButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Save"
+icon = ExtResource("2_uaf60")
+flat = true
+
+[node name="RequestButtons" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="EndpointButton" type="Button" parent="RequestButtons"]
+layout_mode = 2
+text = "Endpoint"
+icon = ExtResource("1_x87lt")
+flat = true
+
+[node name="HeadersButton" type="Button" parent="RequestButtons"]
+layout_mode = 2
+text = "Headers"
+icon = ExtResource("2_rkps1")
+flat = true
+
+[node name="BodyButton" type="Button" parent="RequestButtons"]
+layout_mode = 2
+text = "Body"
+icon = ExtResource("3_i7xoc")
+flat = true
+
+[node name="CookiesButton" type="Button" parent="RequestButtons"]
+visible = false
+layout_mode = 2
+text = "Cookies"
+icon = ExtResource("4_1osk7")
+flat = true
+
+[node name="AuthorizationButton" type="Button" parent="RequestButtons"]
+visible = false
+layout_mode = 2
+text = "Authorization"
+icon = ExtResource("5_f2qh0")
+flat = true
+
+[node name="ResponseButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+disabled = true
+text = "Response"
+icon = ExtResource("7_x0seg")
+flat = true
+
+[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="RequestButtons/EndpointButton" to="." method="_on_endpoint_button_pressed"]
+[connection signal="pressed" from="RequestButtons/HeadersButton" to="." method="_on_headers_button_pressed"]
+[connection signal="pressed" from="RequestButtons/BodyButton" to="." method="_on_body_button_pressed"]
+[connection signal="pressed" from="ResponseButton" to="." method="_on_response_button_pressed"]

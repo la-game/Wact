@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbxclo58kwcsi"]
+
+[ext_resource type="Script" path="res://src/main.gd" id="1_wi6ka"]
+[ext_resource type="PackedScene" uid="uid://7he7deki8plt" path="res://src/backup_container/backup_container.tscn" id="2_febhx"]
+[ext_resource type="PackedScene" uid="uid://dvisctvwmanyn" path="res://src/request_container/request_container.tscn" id="2_sk7u6"]
+
+[node name="Main" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+script = ExtResource("1_wi6ka")
+
+[node name="LeftSplit" type="HSplitContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="SavesContainer" parent="LeftSplit" instance=ExtResource("2_febhx")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RequestContainer" parent="LeftSplit" instance=ExtResource("2_sk7u6")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="add_pressed" from="LeftSplit/SavesContainer" to="." method="_on_saves_container_add_pressed"]
+[connection signal="dock_pressed" from="LeftSplit/SavesContainer" to="." method="_on_saves_container_dock_pressed"]
+[connection signal="save_requested" from="LeftSplit/RequestContainer" to="." method="_on_request_container_save_requested"]

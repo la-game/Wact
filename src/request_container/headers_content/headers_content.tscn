@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://407rdlteq4nv"]
+
+[ext_resource type="Texture2D" uid="uid://d3hyf3jqikwwe" path="res://icons/pencil-symbolic.svg" id="1_cdkhj"]
+[ext_resource type="Texture2D" uid="uid://cm73q5oxkplmh" path="res://icons/user-trash-symbolic.svg" id="2_32bb8"]
+
+[node name="HeadersContent" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OnOff" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="OnOffLabel" type="Label" parent="OnOff"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Headers"
+
+[node name="OnOffButton" type="CheckButton" parent="OnOff"]
+layout_mode = 2
+
+[node name="HeaderButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Add New Header..."
+
+[node name="List" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Line" type="HBoxContainer" parent="List"]
+layout_mode = 2
+
+[node name="KeyValue" type="VBoxContainer" parent="List/Line"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="KeyLabel" type="Label" parent="List/Line/KeyValue"]
+layout_mode = 2
+text = "Key"
+
+[node name="ValueLabel" type="Label" parent="List/Line/KeyValue"]
+modulate = Color(0.60933, 0.60933, 0.60933, 1)
+layout_mode = 2
+text = "Value"
+
+[node name="EditButton" type="Button" parent="List/Line"]
+layout_mode = 2
+icon = ExtResource("1_cdkhj")
+flat = true
+
+[node name="DeleteButton" type="Button" parent="List/Line"]
+layout_mode = 2
+icon = ExtResource("2_32bb8")
+flat = true

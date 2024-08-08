@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://j41ryit5g0fm"]
+
+[ext_resource type="Script" path="res://src/request_container/response_content/response_content.gd" id="1_hassy"]
+
+[node name="ResponseContent" type="VBoxContainer" node_paths=PackedStringArray("code_label", "summary_label", "headers_edit", "body_edit")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_hassy")
+code_label = NodePath("Summary/CodeSummary/CodeLabel")
+summary_label = NodePath("Summary/CodeSummary/SummaryLabel")
+headers_edit = NodePath("HeadersEdit")
+body_edit = NodePath("BodyEdit")
+
+[node name="Summary" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CodeSummary" type="VBoxContainer" parent="Summary"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CodeLabel" type="Label" parent="Summary/CodeSummary"]
+layout_mode = 2
+text = "200"
+
+[node name="SummaryLabel" type="Label" parent="Summary/CodeSummary"]
+modulate = Color(0.60933, 0.60933, 0.60933, 1)
+layout_mode = 2
+text = "Ok"
+
+[node name="HeadersEdit" type="TextEdit" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+
+[node name="BodyEdit" type="TextEdit" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
